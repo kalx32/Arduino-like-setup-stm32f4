@@ -2,7 +2,8 @@
 
 /*
    @brief   This is an example program to demonstrate the use of setup and loop functions
-            The project provides a setup for Initializing PWM timer on Advanced Timer 1 Peripheral
+            The project provides a setup for Initializing PWM timer on Advanced Timer 1 Peripheral on pin A8
+            and blinking LED on pin C13
             Upon success compilation the binary will be directed to STM32/build/smps-controller.bin
             Upload the binary on your STM32 device with STLink ar any debugging Tool
 
@@ -10,8 +11,10 @@
 */
 
 TIM_HandleTypeDef htim1 ={0};
-__IO uint32_t p_width ={20};
+__IO uint32_t p_width =20U;
 
+
+//implementing user logic in setup
 void setup(){
 
     __HAL_RCC_GPIOC_CLK_ENABLE();
@@ -44,11 +47,16 @@ void setup(){
 
 }
 
+
+//calling loop
 void loop(){
+
+    //toggling led on pin C13
     HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
     HAL_Delay(1000);
 }
 
+//initializing timer 1 for PWM
 void tim_pwm_init(){
 
     TIM_ClockConfigTypeDef xClockSourceConfig = {0};
