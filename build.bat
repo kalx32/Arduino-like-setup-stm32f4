@@ -2,6 +2,8 @@
 
 echo off
 
+echo the following programs need to be installed to compile this project
+
 echo looking for cmake.exe
 
 where cmake.exe >null 2>&1
@@ -29,7 +31,7 @@ if %errorlevel% neq 0 (
 
 echo running cmake
 
-cmake . --preset 
+cmake . --preset debug 
 
 ninja -C ./STM32/build
 if %errorlevel% neq 0 (
