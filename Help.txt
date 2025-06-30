@@ -1,0 +1,1 @@
+To compile this project(only for windows), double tap the file '''build.bat''' to run the build script
