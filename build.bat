@@ -3,9 +3,12 @@
 echo off
 
 echo the following programs need to be installed to compile this project
+echo cmake.exe, ninja.exe, arm-none-eabi-gcc.exe
+
+echo press any key to continue
+pause
 
 echo looking for cmake.exe
-
 where cmake.exe >null 2>&1
 if %errorlevel% neq 0 (
     echo please install cmake and make sure it is added in the path
@@ -14,7 +17,6 @@ if %errorlevel% neq 0 (
 )
 
 echo looking for ninja.exe
-
 where ninja.exe >null 2>&1
 if %errorlevel% neq 0 (
     echo please install ninja and make sure it is added in the path
@@ -23,17 +25,15 @@ if %errorlevel% neq 0 (
 )
 
 echo looking for gnu-arm embedded toolchain
-
 where arm-none-eabi-gcc.exe >null 2>&1
 if %errorlevel% neq 0 (
     echo please install GNU-ARM embedded toolchain for Windows i.e arm-none-eabi-gcc, g++, etc
 )
 
 echo running cmake
-
 cmake . --preset debug 
-
 ninja -C ./STM32/build
+
 if %errorlevel% neq 0 (
     echo build finish with error
 )
